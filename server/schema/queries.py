@@ -1,7 +1,8 @@
 import strawberry
 from typing import List, Optional
-
+from strawberry.permission import PermissionExtension
 from db_core.mongodb import products_amazon
+from permissions.rate_limiter import RateLimiter, limiter
 from schema.types import ProductDetails, ProductDetailsPage, Price
 
 
@@ -12,7 +13,7 @@ class Query:
         - Exposes ProductDetailsPage based on current_page and items_per_page
         - Exposes next_page for easy infinite scroll
     """
-    @strawberry.field
+    @strawberry.field(extensions=[PermissionExtension(permissions=[RateLimiter()])])
     def amazon_products(
         self,
         current_page: Optional[int] = 1,

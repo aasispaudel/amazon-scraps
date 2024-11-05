@@ -1,7 +1,8 @@
 import strawberry
-
+from strawberry.permission import PermissionExtension
 from db_core.models import ProductDetails as ProductDetailsDbModel, Price as PriceDbModel
 from db_core.mongodb import products_amazon
+from permissions.rate_limiter import RateLimiter
 from schema.types import AddProductDetailsOutput
 from schema.input_types import AddProductDetailsInput
 
@@ -14,7 +15,8 @@ class Mutation:
         See @:type AddProductDetailsInput for more details
         @:returns AddProductDetailsOutput
     """
-    @strawberry.mutation
+    @strawberry.mutation(extensions=[PermissionExtension(permissions=[RateLimiter()])]
+)
     def add_product_details(
         self, product_details: AddProductDetailsInput
     ) -> AddProductDetailsOutput:
