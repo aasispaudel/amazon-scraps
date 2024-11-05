@@ -7,6 +7,11 @@ from schema.types import ProductDetails, ProductDetailsPage, Price
 
 @strawberry.type
 class Query:
+    """
+        - Query for amazon product scraps
+        - Exposes ProductDetailsPage based on current_page and items_per_page
+        - Exposes next_page for easy infinite scroll
+    """
     @strawberry.field
     def amazon_products(
         self,

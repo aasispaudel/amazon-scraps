@@ -8,6 +8,12 @@ from schema.input_types import AddProductDetailsInput
 
 @strawberry.type
 class Mutation:
+    """
+        Mutation for adding amazon product scraps
+        Needs name, other details are optional
+        See @:type AddProductDetailsInput for more details
+        @:returns AddProductDetailsOutput
+    """
     @strawberry.mutation
     def add_product_details(
         self, product_details: AddProductDetailsInput
