@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Amazon Scraps",
+  "description": "Collects basic product data from amazon product pages",
+  "version": "1.0",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "assets/amazon_scraps.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.amazon.com/*/dp/*"],
+      "js": ["content/gather.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}
