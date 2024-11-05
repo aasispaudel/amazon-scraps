@@ -33,6 +33,8 @@ function getElementByText(tags, text) {
  * Case 2: Single price for single product
  *        Structure: {startPrice} endPrice is null | undefined
  *
+ * @returns Price or price range in cents
+ *
  */
 const getPriceDetails = () => {
   const priceRange = document.querySelector(".a-price-range")
@@ -127,26 +129,23 @@ const getProductDetails = () => {
     .slice(1)
     .join(" ")
 
-  console.log("Name scrap complete", name)
+  if (!name) {
+    console.error(
+      "Amazon scraps can not find name of the product. Stopping scraping process now."
+    )
+    return
+  }
 
   const price = getPriceDetails()
 
-  console.log("Price scrap complete", price)
-
   const description = getDescriptionDetails()
-
-  console.log("Description scrap complete", description)
 
   const imageUrl = document
     .getElementById("imgTagWrapperId")
     .querySelector("img")
     .getAttribute("src")
 
-  console.log("Image URL scrap complete", imageUrl)
-
   const review = getReviewDetails()
-
-  console.log("Review scrap complete", review)
 
   return { name, description, price, imageUrl, review }
 }
@@ -154,6 +153,12 @@ const getProductDetails = () => {
 const scrapeDataParent = () => {
   if (isAmazonProductPage()) {
     const productDetails = getProductDetails()
+
+    // In case null is returned, stop scraping process
+    // Case 1 for null: No product title or name found.
+    if (!productDetails) {
+      return
+    }
 
     console.log("Product details to send to background", productDetails)
 
