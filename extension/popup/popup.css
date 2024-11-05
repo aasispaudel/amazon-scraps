@@ -23,10 +23,30 @@
   font-weight: bold;
 }
 
+.scraps-title {
+  margin-bottom: 1rem;
+  font-size: 16px;
+  color: #7b287f;
+  font-weight: bold;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  align-items: center;
+}
+
+.small-image {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
 /* Basic styling for the popup */
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 3px;
   width: 400px;
   background-color: #f9f9f9;
 }
@@ -48,6 +68,10 @@ label {
 
 .toggle-switch input {
   display: none;
+}
+
+.lower-body {
+  padding: 20px;
 }
 
 .slider {

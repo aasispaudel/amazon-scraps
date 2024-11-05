@@ -5,6 +5,15 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
+    <div class="flex-container">
+      <img
+        src="/assets/amazon_scraps.png"
+        alt="Amazon Scraps"
+        class="small-image"
+      />
+      <div class="scraps-title">Amazon scraps</div>
+    </div>
+
     <label>
       Enable Scraping
       <div class="toggle-switch">
@@ -12,9 +21,10 @@
         <span class="slider"></span>
       </div>
     </label>
-
-    <div class="latest-scraps">Our latest scraps</div>
-    <div id="product-container"></div>
+    <div class="lower-body">
+      <div class="latest-scraps">Our latest scraps</div>
+      <div id="product-container"></div>
+    </div>
 
     <script src="popup.js"></script>
   </body>
