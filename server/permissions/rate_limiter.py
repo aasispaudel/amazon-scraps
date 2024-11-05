@@ -24,7 +24,7 @@ class RateLimiter(BasePermission):
 
         # Apply rate limiting for each client IP address
         try:
-            limiter.limit("400/minute")(lambda request: None)(call_request)  # 5 requests per minute
+            limiter.limit("4000/minute")(lambda request: None)(call_request)  # 5 requests per minute
             return True  # Allow access if within limit
         except Exception as e:
             return False  # Deny access if limit is exceeded
